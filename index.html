@@ -3,586 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="作ったもの、学んだこと、日々の記録をまとめた個人ホームページ。">
 <title>homepage</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans JP",
-        sans-serif;
-
-    background: #f7f7f5;
-    color: #222;
-    line-height: 1.7;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* ==============================
-   Header
-============================== */
-
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #ddd;
-}
-
-.header-inner {
-    max-width: 1100px;
-    margin: auto;
-    padding: 18px 24px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-weight: 700;
-    font-size: 18px;
-}
-
-nav {
-    display: flex;
-    gap: 24px;
-    font-size: 14px;
-    color: #555;
-}
-
-nav a:hover {
-    color: #000;
-}
-
-/* ==============================
-   Hero
-============================== */
-
-.hero {
-    max-width: 1100px;
-    margin: auto;
-    padding: 90px 24px 70px;
-}
-
-.hero-label {
-    font-family: monospace;
-    font-size: 14px;
-    color: #777;
-}
-
-.hero h1 {
-    font-size: clamp(36px, 7vw, 72px);
-    line-height: 1.15;
-    margin: 15px 0 24px;
-    letter-spacing: -0.04em;
-}
-
-.hero p {
-    max-width: 650px;
-    font-size: 18px;
-    color: #555;
-}
-
-/* ==============================
-   Common
-============================== */
-
-section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 50px 24px;
-}
-
-.section-title {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-
-    margin-bottom: 26px;
-}
-
-.section-title h2 {
-    margin: 0;
-    font-size: 26px;
-}
-
-.section-title span {
-    font-family: monospace;
-    color: #999;
-    font-size: 13px;
-}
-
-/* ==============================
-   Categories
-============================== */
-
-.categories {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
-
-    gap: 12px;
-}
-
-.category {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-
-    padding: 20px;
-
-    transition:
-        transform 0.15s,
-        box-shadow 0.15s;
-}
-
-.category:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,0.06);
-}
-
-.category strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.category small {
-    color: #888;
-}
-
-/* ==============================
-   Articles
-============================== */
-
-.articles {
-    background: #fff;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-
-.article-list {
-    border-top: 1px solid #ddd;
-}
-
-.article {
-    display: grid;
-    grid-template-columns: 110px 1fr auto;
-
-    gap: 20px;
-
-    padding: 20px 0;
-    border-bottom: 1px solid #ddd;
-
-    align-items: center;
-}
-
-.article-date {
-    font-family: monospace;
-    color: #888;
-    font-size: 13px;
-}
-
-.article-title {
-    font-weight: 600;
-}
-
-.article-category {
-    font-size: 12px;
-    background: #eee;
-    padding: 4px 9px;
-    border-radius: 20px;
-}
-
-/* ==============================
-   Projects
-============================== */
-
-.projects {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(260px, 1fr));
-
-    gap: 18px;
-}
-
-.project {
-    background: #222;
-    color: white;
-
-    border-radius: 12px;
-    padding: 26px;
-
-    min-height: 170px;
-}
-
-.project small {
-    color: #aaa;
-    font-family: monospace;
-}
-
-.project h3 {
-    margin: 12px 0 8px;
-}
-
-.project p {
-    color: #ccc;
-    font-size: 14px;
-}
-
-/* ==============================
-   About
-============================== */
-
-.about {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-}
-
-.about-title {
-    font-size: 30px;
-    font-weight: 700;
-}
-
-.about-text {
-    color: #555;
-}
-
-/* ==============================
-   Footer
-============================== */
-
-footer {
-    border-top: 1px solid #ddd;
-    margin-top: 60px;
-}
-
-.footer-inner {
-    max-width: 1100px;
-    margin: auto;
-    padding: 35px 24px;
-
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 13px;
-    color: #888;
-}
-
-/* ==============================
-   Mobile
-============================== */
-
-@media (max-width: 700px) {
-
-    nav {
-        display: none;
-    }
-
-    .hero {
-        padding-top: 60px;
-    }
-
-    .article {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .article-category {
-        width: fit-content;
-    }
-
-    .about {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-}
-
-</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23222222'/%3E%3Cpath d='M19 16h19c5 0 8 3 8 8v24H27c-5 0-8-3-8-8V16Z' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Cpath d='M28 25h10M28 34h10' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script src="content-data.js" defer></script>
+<script src="site.js" defer></script>
 </head>
-
 <body>
-
-<header>
-
-<div class="header-inner">
-
-    <a class="logo" href="/">
-        自分OSS化プロジェクト
-    </a>
-
-    <nav>
-        <a href="#categories">ジャンル</a>
-        <a href="#articles">記事</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="./index.html">homepage</a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#categories">ジャンル</a>
+      <a href="#articles">記事</a>
+      <a href="article.html?path=contents.md">全目次</a>
+      <a href="#about">About</a>
     </nav>
-
-</div>
-
+  </div>
 </header>
 
-
 <main>
-
-<!-- ==============================
-     Hero
-============================== -->
-
-<div class="hero">
-
-    <div class="hero-label">
-        PERSONAL OPEN SOURCE PROJECT
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p class="eyebrow">PERSONAL KNOWLEDGE ARCHIVE</p>
+      <h1 id="page-title">homepage</h1>
+      <p class="lead">作ったもの、学んだこと、失敗したこと、演奏した曲、行った場所。あとから参照できる形で、少しずつ残していきます。</p>
     </div>
-
-    <h1>
-        homepage
-    </h1>
-
-    <p>
-        作ったもの、学んだこと、失敗したこと、
-        演奏した曲、行った場所。
-        自分の中だけに置いておくにはもったいないものを、
-        少しずつ公開していく個人プロジェクトです。
-    </p>
-
-</div>
-
-
-<!-- ==============================
-     Categories
-============================== -->
-
-<section id="categories">
-
-<div class="section-title">
-    <h2>ジャンル</h2>
-    <span>/ categories</span>
-</div>
-
-<div class="categories">
-
-    <a class="category" href="#">
-        <strong>譜面作成</strong>
-        <small>MuseScore / TAB / 採譜</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>ベース演奏</strong>
-        <small>弾いてみた / 練習 / 耳コピ</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>電子工作</strong>
-        <small>Arduino / ESP32 / 回路</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>電子楽器</strong>
-        <small>MIDI / 音源 / 自作楽器</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>プログラミング</strong>
-        <small>Python / Web / ツール制作</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>AI・自動化</strong>
-        <small>ChatGPT / Codex / API</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>ガジェット</strong>
-        <small>PC / iPhone / 機材</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>ゲーム</strong>
-        <small>プレイ / 制作</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>旅行</strong>
-        <small>旅行記 / 写真 / 行程</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>日記</strong>
-        <small>日常の記録</small>
-    </a>
-
-    <a class="category" href="#">
-        <strong>雑記</strong>
-        <small>その他いろいろ</small>
-    </a>
-
-</div>
-
-</section>
-
-
-<!-- ==============================
-     Latest Articles
-============================== -->
-
-<div class="articles" id="articles">
-
-<section>
-
-<div class="section-title">
-    <h2>最新の記事</h2>
-    <span>/ latest</span>
-</div>
-
-<div class="article-list">
-
-    <a class="article" href="#">
-        <div class="article-date">2026.09.09</div>
-        <div class="article-title">
-            MuseScore 4をWindows 11にセットアップする
-        </div>
-        <div class="article-category">譜面作成</div>
-    </a>
-
-    <a class="article" href="#">
-        <div class="article-date">2026.09.08</div>
-        <div class="article-title">
-            Arduino Nanoを触ってみる
-        </div>
-        <div class="article-category">電子工作</div>
-    </a>
-
-    <a class="article" href="#">
-        <div class="article-date">2026.09.07</div>
-        <div class="article-title">
-            ベースの弾いてみた動画を投稿するまで
-        </div>
-        <div class="article-category">ベース演奏</div>
-    </a>
-
-</div>
-
-</section>
-
-</div>
-
-
-<!-- ==============================
-     Projects
-============================== -->
-
-<section id="projects">
-
-<div class="section-title">
-    <h2>Projects</h2>
-    <span>/ 作っているもの</span>
-</div>
-
-<div class="projects">
-
-    <a class="project" href="#">
-        <small>PROJECT 01</small>
-
-        <h3>自分OSS化プロジェクト</h3>
-
-        <p>
-            自分の知識・制作物・経験を
-            Web上に蓄積していくプロジェクト。
-        </p>
-    </a>
-
-    <a class="project" href="#">
-        <small>PROJECT 02</small>
-
-        <h3>電子工作</h3>
-
-        <p>
-            ArduinoやESP32、
-            小型マイコンを使った実験と制作。
-        </p>
-    </a>
-
-    <a class="project" href="#">
-        <small>PROJECT 03</small>
-
-        <h3>音楽制作</h3>
-
-        <p>
-            ベース演奏、TAB譜、
-            MIDIや電子楽器について。
-        </p>
-    </a>
-
-</div>
-
-</section>
-
-
-<!-- ==============================
-     About
-============================== -->
-
-<section id="about">
-
-<div class="about">
-
-    <div class="about-title">
-        About
+    <div class="hero-index" aria-label="サイトの概要">
+      <span><strong id="category-count">—</strong>ジャンル</span>
+      <span><strong id="article-count">—</strong>記事</span>
     </div>
+  </section>
 
-    <div class="about-text">
-
-        <p>
-            このサイトは、自分が日々作ったものや学んだことを
-            「あとから誰でも参照できる形」に残すための場所です。
-        </p>
-
-        <p>
-            完成した成果物だけでなく、
-            セットアップ方法、試行錯誤、失敗、
-            小さな発見も公開します。
-        </p>
-
+  <section id="categories" class="section-block" aria-labelledby="categories-title">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">01 / CATEGORIES</p>
+        <h2 id="categories-title">ジャンル</h2>
+      </div>
+      <a class="text-link" href="article.html?path=contents.md">Markdownの全目次を見る <span aria-hidden="true">↗</span></a>
     </div>
+    <div class="category-grid" id="category-grid"></div>
+  </section>
 
-</div>
+  <div class="articles-surface" id="articles">
+    <section class="section-block" aria-labelledby="articles-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">02 / ARTICLES</p>
+          <h2 id="articles-title">記事一覧</h2>
+        </div>
+        <p class="section-note">メモの階層を、そのまま記事の設計図にしています。</p>
+      </div>
+      <div id="article-directory" class="article-directory"></div>
+    </section>
+  </div>
 
-</section>
-
+  <section id="about" class="section-block about" aria-labelledby="about-title">
+    <div>
+      <p class="section-kicker">03 / ABOUT</p>
+      <h2 id="about-title">About</h2>
+    </div>
+    <div class="about-copy">
+      <p>このサイトは、日々作ったものや学んだことを「あとから誰でも参照できる形」に残すための場所です。</p>
+      <p>完成した成果物だけでなく、セットアップ方法、試行錯誤、失敗、小さな発見も公開します。</p>
+    </div>
+  </section>
 </main>
 
-
 <footer>
-
-<div class="footer-inner">
-
-    <span>
-        © 2026 自分OSS化プロジェクト
-    </span>
-
-    <span>
-        GitHub Pages
-    </span>
-
-</div>
-
+  <div class="footer-inner">
+    <span>© 2026 homepage</span>
+    <span>GitHub Pages</span>
+  </div>
 </footer>
-
 </body>
 </html>
