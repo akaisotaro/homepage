@@ -15,6 +15,22 @@
     `).join("")}</ul>`;
   };
 
+  const renderVisitorCount = () => {
+    const message = document.querySelector("#visitor-message");
+    if (!message) return;
+    try {
+      const key = "homepage:visit-count";
+      const stored = Number.parseInt(window.localStorage.getItem(key), 10);
+      const count = Number.isSafeInteger(stored) && stored > 0 && stored < Number.MAX_SAFE_INTEGER ? stored + 1 : 1;
+      window.localStorage.setItem(key, String(count));
+      const number = document.createElement("strong");
+      number.textContent = count.toLocaleString("ja-JP");
+      message.replaceChildren("このブラウザーでは ", number, " 回目の訪問です");
+    } catch (_error) {
+      message.textContent = "このブラウザーでは訪問回数を保存できません";
+    }
+  };
+
   const renderHome = () => {
     const data = window.SITE_CONTENT;
     if (!data) return;
@@ -26,12 +42,46 @@
     document.querySelector("#article-count").textContent = articleCount;
 
     categoryGrid.innerHTML = data.categories.map((category, categoryIndex) => `
-      <a class="category-card" href="#category-${category.slug}">
-        <span class="category-number">${String(categoryIndex + 1).padStart(2, "0")}</span>
-        <span class="category-name">${escapeHtml(category.name)}</span>
-        <span class="category-meta">${category.articles.length} articles</span>
-      </a>
+      <div class="category-wrap">
+        <a class="category-card" href="#category-${category.slug}" aria-controls="category-popover-${category.slug}">
+          <span class="category-number">${String(categoryIndex + 1).padStart(2, "0")}</span>
+          <span class="category-name">${escapeHtml(category.name)}</span>
+          <span class="category-meta">${category.articles.length} articles <span aria-hidden="true">↗</span></span>
+        </a>
+        <div class="category-popover" id="category-popover-${category.slug}">
+          <div class="category-popover-inner">
+            <p class="category-popover-label">${escapeHtml(category.name)}の記事</p>
+            <div class="category-popover-links">
+              ${category.articles.map((article) => `
+                <a href="article.html?path=${encodeURIComponent(article.file)}">${escapeHtml(article.title)}<span aria-hidden="true">↗</span></a>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      </div>
     `).join("");
+
+    categoryGrid.addEventListener("click", (event) => {
+      const card = event.target.closest(".category-card");
+      if (!card || !window.matchMedia("(hover: none)").matches) return;
+      const wrap = card.closest(".category-wrap");
+      if (wrap.dataset.open === "true") return;
+      event.preventDefault();
+      categoryGrid.querySelectorAll('.category-wrap[data-open="true"]').forEach((item) => { delete item.dataset.open; });
+      wrap.dataset.open = "true";
+    });
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest(".category-wrap")) return;
+      categoryGrid.querySelectorAll('.category-wrap[data-open="true"]').forEach((item) => { delete item.dataset.open; });
+      if (categoryGrid.contains(document.activeElement)) document.activeElement.blur();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      categoryGrid.querySelectorAll('.category-wrap[data-open="true"]').forEach((item) => { delete item.dataset.open; });
+      if (categoryGrid.contains(document.activeElement)) document.activeElement.blur();
+    });
 
     directory.innerHTML = data.categories.map((category, categoryIndex) => `
       <section class="category-section" id="category-${category.slug}">
@@ -142,6 +192,7 @@
   };
 
   document.addEventListener("DOMContentLoaded", () => {
+    renderVisitorCount();
     renderHome();
     loadArticle();
   });
