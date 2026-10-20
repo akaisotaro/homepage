@@ -1,3 +1,2 @@
-# homepage
 
-- [ホームページ](https://akaisotaro.github.io/homepage/)
+- [ホームページ](https://github.com/akaisotaro/homepage/wiki)
