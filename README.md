@@ -1,2 +1,2 @@
 
-- [ホームページ](https://github.com/akaisotaro/homepage/wiki)
+- [ホームページ](https://github.com/akaisotaro/homepage/wiki) （Wiki）
